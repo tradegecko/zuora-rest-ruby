@@ -3,6 +3,12 @@ require "httparty"
 require "active_support/inflector"
 
 require "zuora/version"
+
+require "zuora/rest_operations/all"
+require "zuora/rest_operations/find"
+require "zuora/rest_operations/create"
+require "zuora/rest_operations/update"
+
 require "zuora/resource"
 require "zuora/catalog/product"
 
