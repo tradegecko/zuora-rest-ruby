@@ -10,6 +10,7 @@ require "zuora/rest_operations/create"
 require "zuora/rest_operations/update"
 
 require "zuora/resource"
+require "zuora/account"
 require "zuora/catalog/product"
 
 module Zuora
