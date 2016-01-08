@@ -6,7 +6,11 @@ module Zuora
 
     class << self
       def summary(account_id)
+        Zuora.request(:get, summary_base_resource_url(account_id))
+      end
 
+      def summary_base_resource_url(account_id)
+        [base_resource_url, account_id, "summary"].join("/")
       end
     end
   end

@@ -3,6 +3,7 @@ require "httparty"
 require "active_support/inflector"
 
 require "zuora/version"
+require "zuora/http_client"
 
 require "zuora/rest_operations/all"
 require "zuora/rest_operations/find"
@@ -26,7 +27,7 @@ module Zuora
     end
 
     def request(method, url, params={})
-      HTTParty.public_send(method, url, params.merge(options))
+      Zuora::HttpClient.public_send(method, url, params.merge(options))
     end
 
     def options
