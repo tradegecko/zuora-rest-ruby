@@ -1,8 +1,12 @@
 module Zuora
   module RESTOperations
     module Update
-      def update(body={}, params={})
-        Zuora.request(:put, base_resource_url, params.merge({body: body.to_json}))
+      def update(resource_id, body={}, params={})
+        Zuora.request(:put, update_base_resource_url(resource_id), params.merge({body: body.to_json}))
+      end
+
+      def update_base_resource_url(resource_id)
+        [base_resource_url, resource_id].join("/")
       end
     end
   end
