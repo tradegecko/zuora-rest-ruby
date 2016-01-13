@@ -4,6 +4,7 @@ require "active_support/inflector"
 
 require "zuora/version"
 require "zuora/http_client"
+require "zuora/error_handler"
 
 require "zuora/rest_operations/all"
 require "zuora/rest_operations/find"
@@ -27,7 +28,8 @@ module Zuora
     end
 
     def request(method, url, params={})
-      Zuora::HttpClient.public_send(method, url, params.merge(options))
+      response = Zuora::HttpClient.public_send(method, url, params.merge(options))
+      Zuora::ErrorHandler.handle_response(response)
     end
 
     def options
