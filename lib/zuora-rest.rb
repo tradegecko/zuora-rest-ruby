@@ -13,6 +13,7 @@ require "zuora/rest_operations/update"
 
 require "zuora/resource"
 require "zuora/account"
+require "zuora/subscription"
 require "zuora/catalog/product"
 
 module Zuora
