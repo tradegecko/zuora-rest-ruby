@@ -4,7 +4,7 @@ module Zuora
 
   class ErrorHandler
     def self.handle_response(response)
-      return if response["success"]
+      return response.except("success") if response["success"]
 
       if response["success"].nil?
         raise Zuora::UnknownError.new(response)
