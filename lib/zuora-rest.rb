@@ -16,6 +16,7 @@ require "zuora/resource"
 require "zuora/account"
 require "zuora/subscription"
 require "zuora/catalog/product"
+require "zuora/rsa_signature"
 
 module Zuora
   class << self
@@ -26,6 +27,14 @@ module Zuora
         "https://api.zuora.com/rest/"
       else
         "https://apisandbox-api.zuora.com/rest/"
+      end
+    end
+
+    def payment_page_url
+      if production_mode
+        "https://www.zuora.com/apps/PublicHostedPageLite.do"
+      else
+        "https://apisandbox.zuora.com/apps/PublicHostedPageLite.do"
       end
     end
 
