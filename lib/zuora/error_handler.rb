@@ -9,8 +9,16 @@ module Zuora
       if response["success"].nil?
         raise Zuora::UnknownError.new(response)
       else
-        raise Zuora::APIError.new(response["reasons"])
+        reason = humanize_reason(response)
+        raise Zuora::APIError.new(reason)
       end
+    end
+
+  private
+
+    def self.humanize_reason(response)
+      reason_hash = response["reasons"].first
+      "Error #{reason_hash['code']}: #{reason_hash['message'].humanize}"
     end
   end
 end
