@@ -15,6 +15,7 @@ require "zuora/rest_operations/preview"
 
 require "zuora/resource"
 require "zuora/account"
+require "zuora/invoice"
 require "zuora/subscription"
 require "zuora/payment_method"
 require "zuora/payment_methods/credit_card"
