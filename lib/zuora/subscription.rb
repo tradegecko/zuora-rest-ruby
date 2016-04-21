@@ -10,6 +10,10 @@ module Zuora
         Zuora.request(:get, find_by_account_id_base_resource_url(account_id))
       end
 
+      def find_by_subscription_id(subscription_id)
+        Zuora.request(:get, find_by_subscription_id_base_resource_url(subscription_id))
+      end
+
       def renew(subscription_id, body={}, params={})
         Zuora.request(:post, renew_base_resource_url(subscription_id), params.merge({body: body.to_json}))
       end
@@ -20,6 +24,10 @@ module Zuora
 
       def find_by_account_id_base_resource_url(account_id)
         [base_resource_url, "accounts", account_id].join("/")
+      end
+
+      def find_by_subscription_id_base_resource_url(subscription_id)
+        [base_resource_url, subscription_id].join("/")
       end
 
       def renew_base_resource_url(subscription_id)
