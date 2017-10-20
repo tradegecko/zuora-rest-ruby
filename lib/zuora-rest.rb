@@ -21,6 +21,7 @@ require "zuora/payment"
 require "zuora/payment_method"
 require "zuora/payment_methods/credit_card"
 require "zuora/catalog/product"
+require "zuora/charge_revenue_summaries/subscription_charge"
 require "zuora/rsa_signature"
 
 module Zuora
