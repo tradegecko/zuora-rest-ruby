@@ -32,7 +32,7 @@ require "zuora/data_query"
 
 module Zuora
   class << self
-    attr_accessor :username, :password, :production_mode, :debug_output
+    attr_accessor :bearer_token, :production_mode, :debug_output
 
     def base_url
       if production_mode
@@ -60,21 +60,15 @@ module Zuora
 
     def request(method, url, params={})
       response = Zuora::HttpClient.public_send(method, url, params.merge(options))
-      error_handler = pick_error_handler(params)
-      error_handler.handle_response(response)
+      Zuora::ErrorHandler.handle_response(response)
+      # below is from the upstream gem. TODO: need to investigate
+      # error_handler = pick_error_handler(params)
+      # error_handler.handle_response(response)
     end
 
     def options
       {
-        basic_auth:   basic_auth,
         debug_output: debug_output
-      }
-    end
-
-    def basic_auth
-      {
-        username: username,
-        password: password
       }
     end
 
