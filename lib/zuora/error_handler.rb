@@ -22,8 +22,11 @@ module Zuora
     end
 
     def self.formatted_response(response)
-      snake_cased_response = response.deep_transform_keys!(&:underscore)
-      JSON.parse(snake_cased_response.to_json, object_class: OpenStruct)
+      formatted_response = response.deep_transform_keys!(&:underscore)
+      unless Zuora.results_as_hash
+        formatted_response = JSON.parse(formatted_response.to_json, object_class: OpenStruct)
+      end
+      formatted_response
     end
 
   private

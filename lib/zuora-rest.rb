@@ -33,7 +33,7 @@ require "zuora/data_query"
 
 module Zuora
   class << self
-    attr_accessor :production_mode, :debug_output, :client_id, :client_secret
+    attr_accessor :production_mode, :debug_output, :client_id, :client_secret, :results_as_hash
 
     def base_url
       if production_mode
