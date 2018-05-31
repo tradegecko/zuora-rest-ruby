@@ -6,11 +6,11 @@ module Zuora
 
     class << self
       def create(params)
-        self.post("https://rest.zuora.com/oauth/token", body: params)
+        self.post(base_resource_url, body: params)
       end
 
       def resource_endpoint
-        [API_VERSION, 'oauth/token'].join("/")
+        "oauth/token"
       end
     end
   end
