@@ -3,14 +3,14 @@ module Zuora
     include HTTParty
 
     def self.bearer_token
-      @bearer_token ||= set_bearer_token
+      @bearer_token ||= get_bearer_token
     end
 
     def self.replace_bearer_token
-      @bearer_token = set_bearer_token
+      @bearer_token = get_bearer_token
     end
 
-    def self.set_bearer_token
+    def self.get_bearer_token
       attempts ||= 0
       response = Zuora::OauthToken.create(client_id: Zuora.client_id, client_secret: Zuora.client_secret, grant_type: 'client_credentials')
       response["access_token"]
