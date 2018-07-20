@@ -1,6 +1,9 @@
 module Zuora
   class PaymentMethod < Resource
     extend Zuora::RESTOperations::Delete
+    extend Zuora::RESTOperations::Update
+    extend Zuora::RESTOperations::Find
+
     class << self
 
       def all_by_account_id(account_id)
