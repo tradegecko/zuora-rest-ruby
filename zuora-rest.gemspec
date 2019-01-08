@@ -14,7 +14,7 @@ Gem::Specification.new do |s|
   s.license          = "MIT"
   s.extra_rdoc_files = ["LICENSE", "README.md"]
 
-  s.add_dependency('httparty', '~> 0.13.7')
+  s.add_dependency('httparty')
   s.add_development_dependency('pry', '~> 0.10.3')
 
   s.files            = `git ls-files`.split("\n")
