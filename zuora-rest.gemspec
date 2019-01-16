@@ -16,6 +16,13 @@ Gem::Specification.new do |s|
 
   s.add_dependency('httparty')
   s.add_development_dependency('pry', '~> 0.10.3')
+  s.add_development_dependency "bundler", "~> 1.10"
+  s.add_development_dependency "rake", "~> 10.0"
+  s.add_development_dependency "rspec", "~> 3.0"
+  s.add_development_dependency "rspec-expectations", "~> 3.0"
+  s.add_development_dependency "webmock"
+  s.add_development_dependency "rails", "~> 4.2.0"
+
 
   s.files            = `git ls-files`.split("\n")
   s.test_files       = `git ls-files -- test/*`.split("\n")
