@@ -14,6 +14,7 @@ require "zuora/rest_operations/delete"
 require "zuora/rest_operations/preview"
 
 require "zuora/resource"
+require "zuora/action"
 require "zuora/account"
 require "zuora/invoice"
 require "zuora/subscription"
