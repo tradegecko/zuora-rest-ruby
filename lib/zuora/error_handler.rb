@@ -5,8 +5,9 @@ module Zuora
   class ErrorHandler
     def self.handle_response(response)
       return response.except("success") if response["success"]
+      return response.except("done") if response["done"]
 
-      if response["success"].nil?
+      if response["success"].nil? && response["done"].nil?
         raise Zuora::UnknownError.new(response)
       else
         reason = humanize_reason(response)
