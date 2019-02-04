@@ -22,6 +22,10 @@ module Zuora
         Zuora.request(:put, cancel_base_resource_url(subscription_id), params.merge({body: body.to_json}))
       end
 
+      def update(subscription_id, body={}, params={})
+        Zuora.request(:put, subscriptions_base_resource_url(subscription_id), params.merge({body: body.to_json}))
+      end
+
       def find_by_account_id_base_resource_url(account_id)
         [base_resource_url, "accounts", account_id].join("/")
       end
@@ -36,6 +40,10 @@ module Zuora
 
       def cancel_base_resource_url(subscription_id)
         [base_resource_url, subscription_id, "cancel"].join("/")
+      end
+
+      def subscriptions_base_resource_url(subscription_id)
+        [base_resource_url, "subscriptions", subscription_id].join("/")
       end
     end
   end
