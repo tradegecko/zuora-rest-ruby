@@ -3,11 +3,15 @@ module Zuora
   class APIError < StandardError; end
 
   class ErrorHandler
-    def self.handle_response(response)
-      return response.except("success") if response["success"]
-      return response.except("done") if response["done"]
+    API_SUCCESS_KEYS = ['success', 'Success', 'done', 'Done'].freeze
 
-      if response["success"].nil? && response["done"].nil?
+    def self.handle_response(response)
+      success_key = API_SUCCESS_KEYS.select { |key| response.key?(key) }.first
+      return response.except(success_key) if success_key && response[success_key]
+
+      if response.key?('results')
+        return response
+      elsif response[success_key].nil?
         raise Zuora::UnknownError.new(response)
       else
         reason = humanize_reason(response)
