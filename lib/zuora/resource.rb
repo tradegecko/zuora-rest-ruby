@@ -16,7 +16,7 @@ module Zuora
         _, *namespaces, resource_singular = self.name.underscore.dasherize.split("/")
         segments = ['object', resource_singular]
         segments << model_id if model_id
-        [base_url, segments.join('/')].join
+        [Zuora.base_url, segments.join('/')].join
       end
     end
   end
