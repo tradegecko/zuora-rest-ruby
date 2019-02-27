@@ -4,7 +4,7 @@ require "active_support/inflector"
 
 require "zuora/version"
 require "zuora/http_client"
-require "zuora/error_handler"
+require "zuora/error_handler/base"
 
 require "zuora/rest_operations/all"
 require "zuora/rest_operations/find"
@@ -73,7 +73,7 @@ module Zuora
       if params[:error_handler]
         params[:error_handler]
       else
-        Zuora::ErrorHandler
+        Zuora::ErrorHandler::Base
       end
     end
   end
