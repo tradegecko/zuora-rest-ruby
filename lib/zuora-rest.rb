@@ -4,6 +4,7 @@ require "active_support/inflector"
 
 require "zuora/version"
 require "zuora/http_client"
+require "zuora/error_handler"
 require "zuora/error_handler/base"
 
 require "zuora/rest_operations/all"

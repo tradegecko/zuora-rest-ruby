@@ -1,8 +1,5 @@
 module Zuora
   module ErrorHandler
-    class UnknownError < StandardError; end
-    class APIError < StandardError; end
-
     class Base
       API_SUCCESS_KEYS = ['success', 'Success', 'done', 'Done'].freeze
 
@@ -13,10 +10,10 @@ module Zuora
         if response.key?('results')
           return response
         elsif response[success_key].nil?
-          raise UnknownError.new(response)
+          raise Zuora::ErrorHandler::UnknownError.new(response)
         else
           reason = humanize_reason(response)
-          raise APIError.new(reason)
+          raise Zuora::ErrorHandler::APIError.new(reason)
         end
       end
 
