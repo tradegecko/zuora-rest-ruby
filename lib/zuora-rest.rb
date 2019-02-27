@@ -49,7 +49,8 @@ module Zuora
 
     def request(method, url, params={})
       response = Zuora::HttpClient.public_send(method, url, params.merge(options))
-      Zuora::ErrorHandler.handle_response(response)
+      error_handler = pick_error_handler(params)
+      error_handler.handle_response(response)
     end
 
     def options
@@ -64,6 +65,16 @@ module Zuora
         username: username,
         password: password
       }
+    end
+
+  private
+
+    def pick_error_handler(params)
+      if params[:error_handler]
+        params[:error_handler]
+      else
+        Zuora::ErrorHandler
+      end
     end
   end
 end
