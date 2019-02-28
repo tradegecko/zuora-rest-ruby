@@ -1,10 +1,19 @@
+require "zuora/error_handler/bulk_action"
+
 module Zuora
   class Action < Resource
     class << self
-      [:query, :create, :amend].each do |action_name|
+      [:query, :create].each do |action_name|
         define_method(action_name) do |body|
           Zuora.request(:post, action_base_url(action_name), {body: body.to_json})
         end
+      end
+
+      def amend(body)
+        Zuora.request(:post, action_base_url(:amend), {
+          body: body.to_json,
+          error_handler: Zuora::ErrorHandler::BulkAction
+        })
       end
 
       def action_base_url(action_name)

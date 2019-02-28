@@ -1,3 +1,5 @@
+require "zuora/error_handler/status_checker"
+
 module Zuora
   module Transactions
     class Invoice < Resource
@@ -11,7 +13,7 @@ module Zuora
         end
 
         def find_by_id(invoice_id)
-          Zuora.request(:get, object_url(invoice_id), options)
+          Zuora.request(:get, object_url(invoice_id), {error_handler: Zuora::ErrorHandler::StatusChecker})
         end
       end
     end
