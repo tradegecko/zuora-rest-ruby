@@ -21,7 +21,7 @@ module Zuora
       end
 
       def resource_endpoint
-        [Zuora.base_url, "action"].join
+        [Zuora.api_url, "action"].join
       end
     end
   end

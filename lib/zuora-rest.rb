@@ -34,6 +34,14 @@ module Zuora
 
     def base_url
       if production_mode
+        "https://rest.zuora.com"
+      else
+        "https://rest.apisandbox.zuora.com"
+      end
+    end
+
+    def api_url
+      if production_mode
         "https://rest.zuora.com/v1/"
       else
         "https://rest.apisandbox.zuora.com/v1/"
