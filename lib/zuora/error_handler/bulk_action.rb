@@ -3,6 +3,7 @@ module Zuora
     class BulkAction
       def self.handle_response(response)
         return generate_action_responses(response["results"]) if response["results"]
+        return generate_action_responses(response["records"]) if response["records"]
 
         if response["message"]
           raise Zuora::ErrorHandler::APIError.new(response["message"])
