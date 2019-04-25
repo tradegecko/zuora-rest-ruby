@@ -1,10 +1,14 @@
 require "zuora/error_handler/bulk_action"
+require "zuora/error_handler/bulk_create"
 
 module Zuora
   class Action < Resource
     class << self
       def create(body)
-        Zuora.request(:post, action_base_url(:create), {body: body.to_json})
+        Zuora.request(:post, action_base_url(:create), {
+          body: body.to_json,
+          error_handler: Zuora::ErrorHandler::BulkCreate
+        })
       end
 
       def query(body)
