@@ -20,7 +20,8 @@ module Zuora
     private
 
       def self.humanize_reason(response)
-        response["reasons"].map do |reason_hash|
+        error_object = response["reasons"] || response["errors"]
+        error_object.map do |reason_hash|
           "Error #{reason_hash['code']}: #{reason_hash['message'].humanize}"
         end.join("\n")
       end
