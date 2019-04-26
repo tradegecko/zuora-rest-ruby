@@ -15,6 +15,10 @@ module Zuora
         def find_by_id(invoice_id)
           Zuora.request(:get, object_url(invoice_id), {error_handler: Zuora::ErrorHandler::StatusChecker})
         end
+
+        def delete(invoice_id)
+          Zuora.request(:delete, object_url(invoice_id))
+        end
       end
     end
   end
