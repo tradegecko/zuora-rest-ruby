@@ -9,20 +9,24 @@ module Zuora
 
         if response.key?('results')
           return response
-        elsif response[success_key].nil?
-          raise Zuora::ErrorHandler::UnknownError.new(response)
         else
-          reason = humanize_reason(response)
-          raise Zuora::ErrorHandler::APIError.new(reason)
+          raise Zuora::ClientError, response
         end
       end
 
     private
 
-      def self.humanize_reason(response)
-        error_object = response["reasons"] || response["errors"]
-        error_object.map do |reason_hash|
-          "Error #{reason_hash['code']}: #{reason_hash['message'].humanize}"
+      def error_message(response)
+        return response["message"] if response["message"]
+        return error_messages(response["reasons"]) if response["reasons"]
+        return error_messages(response["errors"]) if response["errors"]
+
+        response.body
+      end
+
+      def error_messages(errors)
+        errors.map do |error|
+          "Error #{error['code']}: #{error['message'].humanize}"
         end.join("\n")
       end
     end

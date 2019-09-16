@@ -1,3 +1,4 @@
+#TODO: Deprecated -- Remove me
 module Zuora
   module ErrorHandler
     class UnknownError < StandardError; end

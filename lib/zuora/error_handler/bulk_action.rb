@@ -5,11 +5,7 @@ module Zuora
         return generate_action_responses(response["results"]) if response["results"]
         return generate_action_responses(response["records"]) if response["records"]
 
-        if response["message"]
-          raise Zuora::ErrorHandler::APIError.new(response["message"])
-        else
-          raise Zuora::ErrorHandler::UnknownError.new(response)
-        end
+        raise Zuora::ClientError, response
       end
 
       def self.generate_action_responses(response_array)
