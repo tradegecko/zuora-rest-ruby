@@ -4,5 +4,6 @@ module Zuora
     class APIError < StandardError; end
     class NotFound < StandardError; end
     class BadRequest < StandardError; end
+    class ParamError < StandardError; end
   end
 end
