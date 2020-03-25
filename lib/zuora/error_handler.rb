@@ -1,8 +1,9 @@
 module Zuora
   module ErrorHandler
-    class UnknownError < StandardError; end
-    class APIError < StandardError; end
-    class NotFound < StandardError; end
-    class BadRequest < StandardError; end
+    class BaseError < StandardError
+    class UnknownError < BaseError; end
+    class APIError < BaseError; end
+    class NotFound < BaseError; end
+    class BadRequest < BaseError; end
   end
 end
