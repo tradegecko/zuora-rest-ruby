@@ -27,6 +27,8 @@ require "zuora/payment_methods/credit_card"
 require "zuora/catalog/product"
 require "zuora/charge_revenue_summaries/subscription_charge"
 require "zuora/rsa_signature"
+require "zuora/access_token"
+require "zuora/data_query"
 
 module Zuora
   class << self
