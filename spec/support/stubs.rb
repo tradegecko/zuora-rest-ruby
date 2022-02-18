@@ -7,7 +7,7 @@ def stub_zuora_call(end_point:, account: "1234")
 end
 
 def stub_zuora_request(action:, end_point:, status: 200, response_body: {}, headers: {'Accept'=>'application/json', 'Content-Type'=>'application/json'}, exclude_version: false)
-   stub_request(action, "https://apisandbox-api.zuora.com/rest/#{ exclude_version ? "" : "v1/" }#{ end_point }").
+   stub_request(action, "https://rest.apisandbox.zuora.com/#{ exclude_version ? "" : "v1/" }#{ end_point }").
       with(:headers => headers).
       to_return(:status => status, :body => response_body)
 end
