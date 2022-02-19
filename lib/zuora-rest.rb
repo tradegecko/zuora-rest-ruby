@@ -69,11 +69,11 @@ module Zuora
       attempts ||= 0
       Zuora::HttpClient.set_authorization_header
       response = Zuora::HttpClient.public_send(method, url, params.merge(options))
-      Zuora::ErrorHandler.handle_response(response)
+      # Zuora::ErrorHandler.handle_response(response)
       # below is from the upstream gem. TODO: need to investigate
-      # error_handler = pick_error_handler(params)
-      # error_handler.handle_response(response)
-    rescue Zuora::APIError, Zuora::UnknownError => e
+      error_handler = pick_error_handler(params)
+      error_handler.handle_response(response)
+    rescue Zuora::ErrorHandler::APIError, Zuora::ErrorHandler::UnknownError => e
       if e.message.match("Error 90000011") || e.message.match("Authentication error")
         #"Error 90000011: This resource is protected, please sign in first"
         # since zuora does not believe we have rights to get information from it

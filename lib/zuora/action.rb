@@ -31,10 +31,6 @@ module Zuora
 
       def resource_endpoint
         [Zuora.api_url, "action"].join
-        # The below is from our gem.
-        # TODO: Is the above for a later version of the api
-        # _, *namespaces, action_name = self.name.underscore.split("/")
-        # [API_VERSION, *namespaces, "action", action_name.camelize(:lower)].join("/")
       end
     end
   end
