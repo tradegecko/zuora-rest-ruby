@@ -35,7 +35,7 @@ RSpec.describe Zuora::BillingPreview do
     let(:response) {  zuora_preview_billing_response_failure(account_id: account_id).to_json }
 
     it 'should raise an APIError and return the code and message' do
-      expect { subject }.to raise_error(Zuora::APIError, "Error REQUEST_REJECTED: The account must be an active account.")
+      expect { subject }.to raise_error(Zuora::ErrorHandler::APIError, "Error REQUEST_REJECTED: The account must be an active account.")
     end
   end
 end
