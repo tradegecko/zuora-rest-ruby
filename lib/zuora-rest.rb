@@ -38,9 +38,12 @@ require "zuora/access_token"
 require "zuora/data_query"
 
 module Zuora
+  API_VERSION = "v1"
+  
   class << self
+    
     attr_accessor :production_mode, :debug_output, :client_id, :client_secret, :results_as_hash
-
+    
     def base_url
       if production_mode
         "https://rest.zuora.com/"
@@ -51,9 +54,9 @@ module Zuora
     
     def api_url
         if production_mode
-            "https://rest.zuora.com/v1/"
+            "https://rest.zuora.com/#{API_VERSION}/"
             else
-            "https://rest.apisandbox.zuora.com/v1/"
+            "https://rest.apisandbox.zuora.com/#{API_VERSION}/"
         end
     end
 

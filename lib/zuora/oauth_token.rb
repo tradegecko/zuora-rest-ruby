@@ -9,6 +9,10 @@ module Zuora
         self.post(base_resource_url, body: params)
       end
 
+      def base_resource_url
+        [Zuora.base_url, resource_endpoint].join
+      end
+
       def resource_endpoint
         "oauth/token"
       end
